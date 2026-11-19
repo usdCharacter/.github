@@ -47,7 +47,7 @@ USD scenes using the projects’ schemas and examples.
    shows how the pieces fit together in a complete character.
 3. **Pose and animate.** Pick controls directly on the character, switch
    between IK and FK, edit animation curves, and see the pose change in `usdview`.
-4. **Bring characters into other tools.** Bake supported rigs for playback in
+4. **Bundle and bring your character logic elsewhere**. Bake supported rigs for playback in
    other applications. RigExec is the evaluator behind the live viewport and
    the `.rigexec` export; the USD stage remains the authoring source.
 
