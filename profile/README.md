@@ -1,6 +1,5 @@
 # usdCharacter — digital characters in OpenUSD
 
-![A rig evaluated live by RigExec in usdview](https://raw.githubusercontent.com/usdCharacter/usdRig/main/docs/gifs/two_bone_ik.gif)
 
 **usdCharacter is an open-source character technology stack for building,
 rigging, and animating digital characters entirely inside
