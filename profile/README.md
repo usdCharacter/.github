@@ -1,6 +1,5 @@
 # usdCharacter — digital characters in OpenUSD
 
-
 **usdCharacter is an open-source character technology stack for building,
 rigging, and animating digital characters entirely inside
 [OpenUSD](https://openusd.org/)** — the open scene-description standard from
@@ -16,10 +15,10 @@ RigExec rigs the character.
 
 ## The character workflow, end to end
 
-1. **Build a character** — assemble a body from USD components in the
-   [character asset library](https://github.com/usdCharacter/usdRig_assets)
-   and fit it with the compose-character workflow
-   ([component selection, fit layers, bindings](https://github.com/usdCharacter/usdRig/tree/main/asset_lib)).
+1. **Build a character** — assemble a body from the
+   [USD components bundled with usdRig](https://github.com/usdCharacter/usdRig/tree/main/asset_lib/components)
+   and fit it using the
+   [character assembly workflow](https://github.com/usdCharacter/usdRig/blob/main/skills/compose-character/SKILL.md).
 2. **Rig it live** — controls, FK, two-bone and chain IK, spline IK, twist,
    constraints, and ordered deformation "movers": skinning, blend shapes,
    lattices, smoothing, Delta Mush. The
@@ -28,27 +27,23 @@ RigExec rigs the character.
 3. **Animate it** — animator tools in the viewport: TouchPose, the marking
    menu, pickers, curves and layers, plus a graph editor for the rig itself.
    Poses bake to a compact `.rigexec` binary with an independent CPU check.
-4. **Ship the character** — the same baked rig plays in
-   [Godot](https://github.com/usdCharacter/usdRig_godot),
-   [Unreal](https://github.com/usdCharacter/usdRig_unreal) (through Control Rig
-   and Sequencer), [Maya](https://github.com/usdCharacter/usdRig_maya) and
-   [Blender](https://github.com/usdCharacter/usdRig_blender) using a USD-free
-   standalone runtime.
+4. **Take the character into other tools** — play baked rigs in
+   [Godot](https://github.com/usdCharacter/usdRig_godot), re-pose them in
+   [Unreal Engine](https://github.com/usdCharacter/usdRig_unreal) through Control Rig
+   and Sequencer, or animate them in [Maya](https://github.com/usdCharacter/usdRig_maya).
+   The [Blender integration](https://github.com/usdCharacter/usdRig_blender)
+   works in the other direction: it reads `.blend` files as OpenUSD rigs for RigExec.
 
-## The stack
+## Public projects
 
 | Project | Character role |
 |---|---|
-| [usdRig](https://github.com/usdCharacter/usdRig) | The character-rigging engine (RigExec) — rigging, skinning, deformation, `.rigexec` bake — C++ |
-| [usdRig_assets](https://github.com/usdCharacter/usdRig_assets) | Character and body-component library in USD |
-| [usdRig_movers](https://github.com/usdCharacter/usdRig_movers) | Extra deformation movers (curvenet) for character skin and cloth |
+| [usdRig](https://github.com/usdCharacter/usdRig) | The C++ character-rigging engine (RigExec): skinning, deformation, and `.rigexec` export |
 | [usdRig_godot](https://github.com/usdCharacter/usdRig_godot) | Play baked characters in Godot 4.7+ with no USD install |
-| [usdRig_unreal](https://github.com/usdCharacter/usdRig_unreal) | Re-pose baked characters in Unreal via Control Rig / Sequencer |
-| [usdRig_maya](https://github.com/usdCharacter/usdRig_maya) | Animate baked characters in Maya; read OpenUSD character files |
+| [usdRig_unreal](https://github.com/usdCharacter/usdRig_unreal) | Re-pose baked characters in Unreal via Control Rig and Sequencer |
+| [usdRig_maya](https://github.com/usdCharacter/usdRig_maya) | Animate baked characters in Maya, or read Maya ASCII files through an OpenUSD file-format plugin |
 | [usdRig_blender](https://github.com/usdCharacter/usdRig_blender) | Open Blender `.blend` characters as RigExec rigs |
-| [usdGen](https://github.com/usdCharacter/usdGen) | Geometry instancing for the worlds characters live in |
-| [usdGen_tools](https://github.com/usdCharacter/usdGen_tools) | `usdview` plug-ins and CLI utilities for USD workflows |
-| usdRig_ios / usdRig_android | Drive character rigs on iPad and Android |
+| [usdGen](https://github.com/usdCharacter/usdGen) | Geometry instancing for character environments |
 
 ## Try a character in minutes
 
