@@ -70,13 +70,17 @@ picker and move it in the viewport to try your first pose. For more, see the
 | [usdRig_maya](https://github.com/usdCharacter/usdRig_maya) | Animate baked characters in Maya; read Maya ASCII through an OpenUSD file-format plugin |
 | [usdRig_blender](https://github.com/usdCharacter/usdRig_blender) | Read Blender `.blend` files as OpenUSD rigs for usdRig |
 
-## How this fits into OpenUSD
+## UsdSkel vs. usdRig: transporting motion and authoring rigs
 
-[UsdSkel](https://openusd.org/release/api/usd_skel_page_front.html) describes
-skeletons, skinning bindings, and skeletal animation. usdRig's project-defined
-schemas describe a different part of the character: the editable controls,
-solvers, and deformation graph used to create a pose. They are implemented as
-OpenUSD extensions, not presented as standard OpenUSD schemas.
+**[UsdSkel](https://openusd.org/release/api/usd_skel_page_front.html) is designed for compact transport.**
+Its standard OpenUSD schemas carry a skeleton, skinning bindings, and animation
+between tools. A walk cycle, for example, can travel as joint transforms without
+requiring the receiving tool to recreate the animator’s controls.
+
+**[usdRig](https://github.com/usdCharacter/usdRig) is designed for robust rig authoring.**
+Its project-defined OpenUSD schemas describe the controls, constraints, solvers,
+and deformers that produce a pose. To change how a knee bends when an animator
+moves a foot control, edit the rig in `usdview` using the usdRig plugins.
 
 [usdRig](https://github.com/usdCharacter/usdRig) is experimental and MIT-licensed;
 bundled and derived third-party material retains its own terms. See the
