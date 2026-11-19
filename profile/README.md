@@ -14,8 +14,11 @@ USD scenes using the projects’ schemas and examples.
   3:13 video or use the illustrated steps and starter files. No scripting required.
 - **usdGen · [Shape a hair groom with Pomade](https://github.com/usdCharacter/usdGen/blob/main/docs/pomade-tool.md).**
   Draw a region on the scalp, shape its guides in `usdview`, and save the groom as USD.
-  Explore the [ponytail example](https://github.com/usdCharacter/usdGen/blob/main/examples/pomade-ponytail.usda)
-  to see how a groom is described on the stage.
+  Open the [ponytail example](https://github.com/usdCharacter/usdGen/blob/main/examples/pomade-ponytail.usda)
+  to explore the guides. To control individual strands, use the `usdview` expression
+  editor to write a [SeExpr2 expression that tapers each hair from root to tip](https://github.com/usdCharacter/usdGen/blob/main/examples/expression-width-plane.usda).
+  To control the groom across the surface, use `usdGenBakePtex` to create
+  [Ptex maps that set where strands clump and how tightly](https://github.com/usdCharacter/usdGen/blob/main/examples/clump-ptex-plane.usda).
 
 ## Rigging schemas and authoring tools
 
