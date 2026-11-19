@@ -1,12 +1,23 @@
-# usdCharacter — digital characters in OpenUSD
+# usdCharacter — character rigging and hair and fur grooming in OpenUSD
 
-**usdCharacter is an open-source technology stack for building, rigging, and
-animating digital characters in [OpenUSD](https://openusd.org/).** Its flagship
-project, [usdRig](https://github.com/usdCharacter/usdRig), brings together
-**OpenUSD character-rigging schemas**, **interactive and programmatic authoring
-tools**, and **full Hydra 2 integration for live character display**.
+usdCharacter is a collection of open-source experiments in [OpenUSD](https://openusd.org/)
+character rigging and grooming for artists and AI agents. With [usdRig](https://github.com/usdCharacter/usdRig)
+and [usdGen](https://github.com/usdCharacter/usdGen), artists can author and edit rigs
+and grooms interactively in `usdview` through plugins. Agents can work with the same
+USD scenes using the projects’ schemas and examples.
 
-## Rigging schemas, authoring tools, and Hydra 2
+## Try a rig or a groom
+
+- **usdRig · [Build a rolling ball rig](https://usdcharacter.github.io/usdRig/concepts/tutorial-rolling-ball/).**
+  Start with an unrigged ball. In Noodles, the node editor in `usdview`, connect a
+  control so that dragging it across the floor makes the ball roll. Follow the
+  3:13 video or use the illustrated steps and starter files. No scripting required.
+- **usdGen · [Shape a hair groom with Pomade](https://github.com/usdCharacter/usdGen/blob/main/docs/pomade-tool.md).**
+  Draw a region on the scalp, shape its guides in `usdview`, and save the groom as USD.
+  Explore the [ponytail example](https://github.com/usdCharacter/usdGen/blob/main/examples/pomade-ponytail.usda)
+  to see how a groom is described on the stage.
+
+## Rigging schemas and authoring tools
 
 - **Character-rigging schemas.** Describe controls, joints, FK and IK solvers,
   constraints, weight fields, and ordered deformations as typed USD prims,
@@ -20,11 +31,6 @@ tools**, and **full Hydra 2 integration for live character display**.
   menu, curve editing, and layer inspection to pose characters and edit
   animation. See the [animator tools](https://usdcharacter.github.io/usdRig/tools/)
   and [Python rig examples](https://github.com/usdCharacter/usdRig/tree/main/examples/python).
-- **Full Hydra 2 integration.** Filtering scene indices publish evaluated
-  transforms, deformed mesh points, normals, and bounds as standard Hydra data.
-  Poses and deformations update live in `usdview` without writing evaluated
-  results back to the authored USD layers. See the
-  [Hydra 2 scene-index implementation](https://github.com/usdCharacter/usdRig/blob/main/libs/rigExecImaging/sceneIndices.h).
 
 ## The character workflow, end to end
 
@@ -37,13 +43,12 @@ tools**, and **full Hydra 2 integration for live character display**.
    [biped example](https://github.com/usdCharacter/usdRig/tree/main/examples/biped)
    shows how the pieces fit together in a complete character.
 3. **Pose and animate.** Pick controls directly on the character, switch
-   between IK and FK, edit animation curves, and see the result in the Hydra
-   viewport as you work.
+   between IK and FK, edit animation curves, and see the pose change in `usdview`.
 4. **Bring characters into other tools.** Bake supported rigs for playback in
    other applications. RigExec is the evaluator behind the live viewport and
    the `.rigexec` export; the USD stage remains the authoring source.
 
-## Try it
+## Run usdRig locally
 
 Download the [latest usdRig release](https://github.com/usdCharacter/usdRig/releases/latest)
 for Windows x64, macOS (Apple Silicon), or Linux x86-64. Open the bundled
@@ -56,12 +61,12 @@ that first rig to composing and authoring a character of your own.
 
 | Project | What it adds |
 |---|---|
-| [usdRig](https://github.com/usdCharacter/usdRig) | Character-rigging schemas, authoring and animation tools, Hydra 2 imaging, and rig evaluation |
+| [usdRig](https://github.com/usdCharacter/usdRig) | Character-rigging schemas, authoring APIs, and interactive rigging and animation plugins for `usdview` |
+| [usdGen](https://github.com/usdCharacter/usdGen) | Hair and fur grooming schemas and interactive grooming with Pomade in `usdview` |
 | [usdRig_godot](https://github.com/usdCharacter/usdRig_godot) | Play baked characters in Godot without an OpenUSD installation |
 | [usdRig_unreal](https://github.com/usdCharacter/usdRig_unreal) | Re-pose baked characters in Unreal Engine via Control Rig and Sequencer |
 | [usdRig_maya](https://github.com/usdCharacter/usdRig_maya) | Animate baked characters in Maya; read Maya ASCII through an OpenUSD file-format plugin |
 | [usdRig_blender](https://github.com/usdCharacter/usdRig_blender) | Read Blender `.blend` files as OpenUSD rigs for usdRig |
-| [usdGen](https://github.com/usdCharacter/usdGen) | OpenUSD geometry instancing for the environments characters inhabit |
 
 ## How this fits into OpenUSD
 
