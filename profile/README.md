@@ -51,11 +51,13 @@ USD scenes using the projects’ schemas and examples.
 ## Run usdRig locally
 
 Download the [latest usdRig release](https://github.com/usdCharacter/usdRig/releases/latest)
-for Windows x64, macOS (Apple Silicon), or Linux x86-64. Open the bundled
-[animated arm](https://github.com/usdCharacter/usdRig/blob/main/examples/ArmShotAnim.usda)
-in `usdview` to try live posing and playback. The
-[usdRig documentation](https://usdcharacter.github.io/usdRig/) takes you from
-that first rig to composing and authoring a character of your own.
+for Windows x64, macOS (Apple Silicon), or Linux x86-64. To pose the full character,
+clone the [usdRig repository](https://github.com/usdCharacter/usdRig) and open
+[`examples/biped/Biped_stack.usda`](https://github.com/usdCharacter/usdRig/blob/main/examples/biped/Biped_stack.usda)
+in `usdview`. Open the file from the checkout rather than downloading it alone:
+it loads the body and face from neighboring layers. Select a control in the character
+picker and move it in the viewport to try your first pose. For more, see the
+[usdRig documentation](https://usdcharacter.github.io/usdRig/).
 
 ## Public projects
 
