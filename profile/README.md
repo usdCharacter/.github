@@ -1,89 +1,78 @@
 # usdCharacter — digital characters in OpenUSD
 
+**usdCharacter is an open-source technology stack for building, rigging, and
+animating digital characters in [OpenUSD](https://openusd.org/).** Its flagship
+project, [usdRig](https://github.com/usdCharacter/usdRig), brings together
+**OpenUSD character-rigging schemas**, **interactive and programmatic authoring
+tools**, and **full Hydra 2 integration for live character display**.
 
-**usdCharacter is an open-source character technology stack for building,
-rigging, and animating digital characters entirely inside
-[OpenUSD](https://openusd.org/)** — the open scene-description standard from
-Pixar. In our stack a character is one living USD scene: mesh, skeleton,
-controls, constraints, weights, deformers and animation all travel together in
-the scene graph, evaluated live and rendered through Hydra. No proprietary rig
-formats, no lossy FBX round-trips, no rig that dies when it leaves its DCC.
+## Rigging schemas, authoring tools, and Hydra 2
 
-The flagship engine, **[RigExec](https://github.com/usdCharacter/usdRig)**,
-adds the rigging layer OpenUSD never had: OpenUSD describes the scene,
-[OpenExec](https://openusd.org/release/intro_to_openexec.html) computes, and
-RigExec rigs the character.
+- **Character-rigging schemas.** Describe controls, joints, FK and IK solvers,
+  constraints, weight fields, and ordered deformations as typed USD prims,
+  attributes, and relationships. The rig can be assembled from reusable
+  components and edited in USD layers alongside the character's geometry and
+  animation. Browse the [schema definitions](https://github.com/usdCharacter/usdRig/blob/main/libs/rigExecSchema/schema.usda)
+  and [node reference](https://usdcharacter.github.io/usdRig/reference/).
+- **Rig authoring and animation tools.** Build and connect rig components with
+  the [C++ and Python authoring APIs](https://github.com/usdCharacter/usdRig/tree/main/libs/rigExecAuthoring).
+  In `usdview`, use viewport gizmos, character pickers, TouchPose, a marking
+  menu, curve editing, and layer inspection to pose characters and edit
+  animation. See the [animator tools](https://usdcharacter.github.io/usdRig/tools/)
+  and [Python rig examples](https://github.com/usdCharacter/usdRig/tree/main/examples/python).
+- **Full Hydra 2 integration.** Filtering scene indices publish evaluated
+  transforms, deformed mesh points, normals, and bounds as standard Hydra data.
+  Poses and deformations update live in `usdview` without writing evaluated
+  results back to the authored USD layers. See the
+  [Hydra 2 scene-index implementation](https://github.com/usdCharacter/usdRig/blob/main/libs/rigExecImaging/sceneIndices.h).
 
 ## The character workflow, end to end
 
-1. **Build a character** — assemble a body from USD components in the
-   [character asset library](https://github.com/usdCharacter/usdRig_assets)
-   and fit it with the compose-character workflow
-   ([component selection, fit layers, bindings](https://github.com/usdCharacter/usdRig/tree/main/asset_lib)).
-2. **Rig it live** — controls, FK, two-bone and chain IK, spline IK, twist,
-   constraints, and ordered deformation "movers": skinning, blend shapes,
-   lattices, smoothing, Delta Mush. The
-   [full biped character example](https://github.com/usdCharacter/usdRig/tree/main/examples/biped)
-   is a rig you can open and drive in `usdview`.
-3. **Animate it** — animator tools in the viewport: TouchPose, the marking
-   menu, pickers, curves and layers, plus a graph editor for the rig itself.
-   Poses bake to a compact `.rigexec` binary with an independent CPU check.
-4. **Ship the character** — the same baked rig plays in
-   [Godot](https://github.com/usdCharacter/usdRig_godot),
-   [Unreal](https://github.com/usdCharacter/usdRig_unreal) (through Control Rig
-   and Sequencer), [Maya](https://github.com/usdCharacter/usdRig_maya) and
-   [Blender](https://github.com/usdCharacter/usdRig_blender) using a USD-free
-   standalone runtime.
+1. **Assemble and fit.** Start with the
+   [USD body components bundled with usdRig](https://github.com/usdCharacter/usdRig/tree/main/asset_lib/components)
+   and adapt them to your character with the
+   [character assembly workflow](https://github.com/usdCharacter/usdRig/blob/main/skills/compose-character/SKILL.md).
+2. **Rig and deform.** Connect controls, solvers, constraints, and skinning or
+   blend shape operations. The
+   [biped example](https://github.com/usdCharacter/usdRig/tree/main/examples/biped)
+   shows how the pieces fit together in a complete character.
+3. **Pose and animate.** Pick controls directly on the character, switch
+   between IK and FK, edit animation curves, and see the result in the Hydra
+   viewport as you work.
+4. **Bring characters into other tools.** Bake supported rigs for playback in
+   other applications. RigExec is the evaluator behind the live viewport and
+   the `.rigexec` export; the USD stage remains the authoring source.
 
-## The stack
+## Try it
 
-| Project | Character role |
+Download the [latest usdRig release](https://github.com/usdCharacter/usdRig/releases/latest)
+for Windows x64, macOS (Apple Silicon), or Linux x86-64. Open the bundled
+[animated arm](https://github.com/usdCharacter/usdRig/blob/main/examples/ArmShotAnim.usda)
+in `usdview` to try live posing and playback. The
+[usdRig documentation](https://usdcharacter.github.io/usdRig/) takes you from
+that first rig to composing and authoring a character of your own.
+
+## Public projects
+
+| Project | What it adds |
 |---|---|
-| [usdRig](https://github.com/usdCharacter/usdRig) | The character-rigging engine (RigExec) — rigging, skinning, deformation, `.rigexec` bake — C++ |
-| [usdRig_assets](https://github.com/usdCharacter/usdRig_assets) | Character and body-component library in USD |
-| [usdRig_movers](https://github.com/usdCharacter/usdRig_movers) | Extra deformation movers (curvenet) for character skin and cloth |
-| [usdRig_godot](https://github.com/usdCharacter/usdRig_godot) | Play baked characters in Godot 4.7+ with no USD install |
-| [usdRig_unreal](https://github.com/usdCharacter/usdRig_unreal) | Re-pose baked characters in Unreal via Control Rig / Sequencer |
-| [usdRig_maya](https://github.com/usdCharacter/usdRig_maya) | Animate baked characters in Maya; read OpenUSD character files |
-| [usdRig_blender](https://github.com/usdCharacter/usdRig_blender) | Open Blender `.blend` characters as RigExec rigs |
-| [usdGen](https://github.com/usdCharacter/usdGen) | Geometry instancing for the worlds characters live in |
-| [usdGen_tools](https://github.com/usdCharacter/usdGen_tools) | `usdview` plug-ins and CLI utilities for USD workflows |
-| usdRig_ios / usdRig_android | Drive character rigs on iPad and Android |
+| [usdRig](https://github.com/usdCharacter/usdRig) | Character-rigging schemas, authoring and animation tools, Hydra 2 imaging, and rig evaluation |
+| [usdRig_godot](https://github.com/usdCharacter/usdRig_godot) | Play baked characters in Godot without an OpenUSD installation |
+| [usdRig_unreal](https://github.com/usdCharacter/usdRig_unreal) | Re-pose baked characters in Unreal Engine via Control Rig and Sequencer |
+| [usdRig_maya](https://github.com/usdCharacter/usdRig_maya) | Animate baked characters in Maya; read Maya ASCII through an OpenUSD file-format plugin |
+| [usdRig_blender](https://github.com/usdCharacter/usdRig_blender) | Read Blender `.blend` files as OpenUSD rigs for usdRig |
+| [usdGen](https://github.com/usdCharacter/usdGen) | OpenUSD geometry instancing for the environments characters inhabit |
 
-## Try a character in minutes
+## How this fits into OpenUSD
 
-- Download a **self-contained release bundle** (Windows, macOS, Linux — no
-  OpenUSD, Python, or Qt needed) from the
-  [latest usdRig release](https://github.com/usdCharacter/usdRig/releases/latest)
-  and open the bundled example rigs.
-- Learn the rigging model in the
-  [usdRig documentation](https://usdcharacter.github.io/usdRig/) — node
-  reference, tutorials, and animator tools.
-- Start small: [the smallest rig](https://github.com/usdCharacter/usdRig/blob/main/examples/rigexec_flat.usda),
-  the [animated arm](https://github.com/usdCharacter/usdRig/blob/main/examples/ArmShotAnim.usda),
-  then the [biped](https://github.com/usdCharacter/usdRig/tree/main/examples/biped).
+[UsdSkel](https://openusd.org/release/api/usd_skel_page_front.html) describes
+skeletons, skinning bindings, and skeletal animation. usdRig's project-defined
+schemas describe a different part of the character: the editable controls,
+solvers, and deformation graph used to create a pose. They are implemented as
+OpenUSD extensions, not presented as standard OpenUSD schemas.
 
-## Why rig characters inside OpenUSD?
-
-Character pipelines break at interchange: every DCC locks rigs in its own
-format, and skeletons exported as
-[UsdSkel](https://openusd.org/release/api/usd_skel_page_front.html) lose the
-controls and deformers that made them poseable. OpenUSD — adopted by Pixar,
-NVIDIA, Autodesk, SideFX, Epic and the
-[Alliance for OpenUSD](https://aousd.org/) — had no rigging system.
-usdCharacter supplies one: characters stay animatable as they move between
-tools, engines, and time.
-
-## Open source and community
-
-Project-authored code and documentation in the public repos are
-**MIT licensed** (bundled third-party components keep their own terms).
-We are active in the OpenUSD community:
-
-- [Alliance for OpenUSD forum](https://forum.aousd.org/) — rigging in USD threads
-- [awesome-openusd](https://github.com/matiascodesal/awesome-openusd) — the community resource list
-- [ASWF USD Working Group](https://lf-aswf.atlassian.net/wiki/spaces/WGUSD) — upstream standardization
-
-Want to build characters with us? See
-[CONTRIBUTING.md](https://github.com/usdCharacter/usdRig/blob/main/CONTRIBUTING.md)
-and issues labeled [`good first issue`](https://github.com/usdCharacter/usdRig/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22).
+[usdRig](https://github.com/usdCharacter/usdRig) is experimental and MIT-licensed;
+bundled and derived third-party material retains its own terms. See the
+[contributor guide](https://github.com/usdCharacter/usdRig/blob/main/CONTRIBUTING.md)
+to get involved, or visit the [Alliance for OpenUSD forum](https://forum.aousd.org/)
+for broader discussion about character workflows in USD.
